@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html ng-app="elk" ng-controller="Ctrl" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ Site }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+    <link rel="stylesheet" href="../../files/fonts.css" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" />
+    
+<style type="text/css">
+    
+body { font-family: 'Raleway', sans-serif; color: #073642; background-color: #FAFAFA; }
+
+a { color: #657b83; }
+a:visited { color: #657b83; }
+
+header { position: fixed; z-index: 900; top: 0; left: 0; right: 0; border-bottom: 1px solid #aaa; background-color: #fff; height: 75px; }
+
+.elkhorn_wrap { position: fixed; bottom: 5px; right: 10px; }
+.elkhorn_wrap img { height: 40px; transition: height 0.5s ease; }
+.elkhorn_wrap img:hover { height: 160px; transition: height 0.5s ease; }
+
+.user_gate { font-size: 12px; text-align: right; position: fixed; top: 15px; right: 105px; z-index: 1000; }
+.user_gate a { color: blue; text-decoration: none; }
+.user_gate a:visited { color: blue; }
+.user_gate a:hover { text-decoration: underline; }
+
+
+.left_aside { position: fixed; z-index: 850; top: 0; left: 0; right: 0; border-bottom: 1px solid #aaa; background-color: #5A5475; height: 75px; transition: 2s; }
+
+
+.left_aside-yes { display: block; opacity: 1; transition: 2s; }
+.left_aside-no { display: none; opacity: 0; transition: 2s; }
+.left_aside_button_wrap { font-size: 14px; position: fixed; top: 10px; right: 5px; z-index: 1000; width: 100px; }
+
+.right_aside-yes { display: none; opacity: 1; transition: 2s; }
+.right_aside-no { display: none; opacity: 0; transition: 2s; }
+.right_aside_button_wrap { display: none; position: fixed; bottom: 5px; right: 25px; z-index: 1000; }
+
+.aside_button_data { letter-spacing: 0.08em; }
+.aside_button_data div { cursor: pointer; padding: 5px; font-size: 12px; color: #aaa; border: 1px solid #fff; width: 75px; text-align: center;; }
+.aside_button_data div:hover { border: 1px solid #eee; color: #555; }
+
+.logo_wrap { color: #96CBFE; outline: 0px solid #657b83; position: fixed; z-index: 1000; top: 5px; left: 5px; width: 125px; text-align: center; line-height: 18px; letter-spacing: .09em; font-size: 14px; transition: 2s; padding: 5px 0; }
+
+.logo_wrap img { width: 50px; }
+
+.logo_wrap a { color: #777; text-decoration: none; }
+.logo_wrap a:visited { color: #777; }
+
+
+.main_nav { position: fixed; left: 0; right: 0; top: 75px; text-align: right; font-size: 14px; z-index: 1000; transition: 2s; }
+.main_nav ul, .edit_wrap ul { padding: 0; margin: 0; }
+.main_nav li, .edit_wrap li { list-style: none; padding-right: 10px; border-right: 4px solid #5A5475;  transition: 2s; padding: 15px; border-bottom: 1px solid #eee; }
+.main_nav li:hover, .edit_wrap li:hover { border-right: 4px solid #96CBFE; color: #002b36; }
+
+.main_nav a, .edit_wrap a { text-decoration: none; color: #96CBFE; }
+
+
+.edit_wrap { position: fixed; left: 100px; top: 205px; text-align: right; }
+
+.page_html_wrap { margin-bottom: 100px; padding-bottom: 125px; margin-top: 75px; outline: 1px solid #eee; transition: 2s; }
+.page_html_wrap a { color: #268bd2; text-decoration: none; }
+
+.item_wrap { outline: 1px dashed #ccc; width: 725px; padding: 10px;  padding-left: 85px; padding-right: 35px; margin-bottom: 25px; color: #93a1a1; }
+.item_wrap:hover { color: #111; outline: 1px solid #aaa; }
+.item_wrap .user_name { float: right; font-size: 12px; color: #93a1a1; }
+
+.page_wrap { padding: 10px; }
+
+.register_link { border: 1px solid #bbb; width: 225px; line-height: 25px; font-size: 14px; margin-top: 25px; margin-left: 5px; letter-spacing: 0.08em; position: relative; }
+.register_link:hover { border: 1px solid #333; }
+.register_link span { background-color: #fff; color: #777; font-size: 12px; padding: 15px; margin-right: 10px; position: absolute; top: 0; bottom: 0; }
+.register_link p { margin-left: 105px; }
+
+
+.nav_graphic { cursor: pointer; position: fixed; bottom: 10px; left: 25px; font-family: 'EntypoRegular'; font-size: 46px; }
+
+.create_intro { font-size: 12px; text-align: right; line-height: 18px; padding-right: 10px; }
+.create_intro a { color: blue; }
+.create_intro a:visited { color: blue; }
+.create_intro a:hover { text-decoration: underline; }
+
+.browse_header { height: 100px; }
+
+.layout_meta { position: fixed; bottom: 145px; font-size: 12px; left: 15px; text-align: right; width: 125px; line-height: 18px; }
+
+
+.ad_wrap { z-index: 10; position: fixed; right: 25px; top: 75px; }
+
+.publish_side_button_wrap { border: 5px dashed #5A5475; position: fixed; bottom: 125px; right: 25px; width: 100px; height: 125px; text-align: center; font-size: 12px; transition: 2s; box-shadow: 5px 3px 6px #C2FFDF; }
+.publish_side_button_wrap h2 { margin-top: 15px; }
+.publish_side_button_wrap span { font-size: 12px; }
+.publish_side_button_wrap .cc { font-family: 'EntypoRegular'; font-size: 45px; line-height: 24px; }
+
+
+
+
+.bottom_ad_wrap { position: fixed; bottom: 15px; right: 125px; }
+
+.timestamp_top { position: absolute; top: 5px; left: 245px; font-family: 'Anonymous Pro'; }
+
+.register_button { text-align: center; width: 200px;  border: 1px dotted #2aa198; padding: 15px; margin-left: 35px; margin-top: 25px; border-radius: 6px; color: #586e75; }
+
+.register_button:hover { text-decoration: none; border: 1px solid #657b83; color: #444; }
+
+.main_nav li#{{ nav_select }}Nav, .edit_wrap li#{{ nav_select }}Nav { border-right: 3px solid #96CBFE; color: #C2FFDF; }
+
+@media (min-width: 550px) {
+body { }
+header { display: none; }
+.logo_wrap { left: 0; }
+.user_gate { right: 10px; }
+.left_aside { top: 5px; left: 0; bottom: 5px; border-right: 1px solid #aaa; height: auto; border-bottom: 0; width: 125px; }
+.left_aside_button_wrap { bottom: 5px; left: 25px; top: auto; }
+.main_nav { width: 115px; top: 115px; }
+.main_nav li, .edit_wrap li { padding: 0; margin-bottom: 15px; border-bottom: 0; padding-right: 10px; }
+.page_html_wrap { margin-left: 130px; margin-right: 130px; margin-top: 25px; }
+.right_aside-yes { display: block; }
+.right_aside_button_wrap { display: block; }
+}
+
+
+@media (min-width: 750px) {
+body { }
+.logo_wrap { font-size: 16px; width: 175px; }
+.left_aside { width: 175px; }
+.main_nav { width: 165px; font-size: 16px; }
+.main_nav li, .edit_wrap li { padding-right: 10px; margin-bottom: 15px; }
+.page_html_wrap { margin-left: 175px; margin-right: 185px; padding: 25px; }
+
+.publish_side_button_wrap { width: 150px; height: 145px; font-size: 14px; }
+.publish_side_button_wrap h2 { margin-top: 15px; }
+.publish_side_button_wrap span { font-size: 14px; }
+.publish_side_button_wrap .cc { font-size: 50px; }
+
+}
+
+
+@media (min-width: 1000px) {
+
+.logo_wrap { font-size: 18px; width: 200px; }
+.left_aside { width: 200px; }
+.main_nav { width: 185px; font-size: 18px; }
+.main_nav li, .edit_wrap li { padding-right: 15px; margin-bottom: 25px; }
+.page_html_wrap { margin-left: 200px; margin-right: 250px; }
+
+.publish_side_button_wrap { width: 200px; height: 175px; font-size: 14px; }
+.publish_side_button_wrap h2 { margin-top: 25px; }
+.publish_side_button_wrap span { font-size: 14px; }
+.publish_side_button_wrap .cc { font-size: 60px; }
+
+}
+
+
+</style>
+
+<script type="text/javascript" src="../../files/angular1.5.min.js"></script>
+<script>
+var elk = angular.module("elk", [],
+  function($interpolateProvider) {
+    $interpolateProvider.startSymbol('[!');
+    $interpolateProvider.endSymbol('!]');
+  }) ///
+  
+elk.controller('Ctrl', function($scope, $http, $sce) {
+  $scope.modal = 'on';
+  $scope.layout_style = 'desktop';
+  
+
+  $scope.day = '{{ day }}';
+  $scope.time = '{{ time }}';
+  $scope.weather_today_sunset = '{{ weather_today_sunset|safe }}';
+  $scope.weather_today_temp = '{{ weather_today_temp }}';
+  $scope.weather_today_text = '{{ weather_today_text }}';
+
+
+  $scope.left_aside = 'yes';
+  $scope.left_aside_open = function() { $scope.left_aside = 'yes'; };
+  $scope.left_aside_close = function() { $scope.left_aside = 'no'; };
+
+  $scope.right_aside = 'yes';
+  $scope.right_aside_open = function() { $scope.right_aside = 'yes'; };
+  $scope.right_aside_close = function() { $scope.right_aside = 'no'; };
+       
+  if(window.innerWidth < 550){ $scope.layout_style = 'mobile'; $scope.left_aside_close(); }
+  
+$scope.account_id = "{{ account_id }}";
+console.log('{{ account_id }}');
+
+$http({ method: 'GET', url: '/list_data?account_page?' + $scope.account_id })
+  .success(function(data, status) { $scope.item = data; console.log('account', data) });
+
+{% if page_id == 'page' %}
+console.log('{{ item_id }}');
+$scope.item_id = '{{ item_id }}';
+
+$http({ method: 'GET', url: '/list_data?page_item?' + $scope.item_id })
+  .success(function(data, status) { $scope.page_item = data; console.log('page', data)
+  $scope.page_html = $sce.trustAsHtml($scope.page_item.page_html); });
+
+
+{% endif %}
+{% if page_id == 'pages' %}
+  $scope.page_list = [];
+
+  $http({ method: 'GET', url: '../../list_data?page_list' })
+    .success(function(data, status) { $scope.page_list = data; console.log(data); });
+{% endif %}
+
+
+
+{% if page_id == 'edit_page' %}
+$scope.right_aside = 'no';
+$scope.if_edit = true;
+$scope.data_id = "{{ data_id }}";
+console.log('{{ item_id }}');
+$scope.item_id = '{{ item_id }}';
+$scope.item_data = '';
+
+$http({ method: 'GET', url: '/list_data?page_code?' + $scope.account_id })
+  .success(function(data, status) { $scope.item_data = data; console.log('own', data);
+    $scope.page_html = $sce.trustAsHtml($scope.item_data.page_html);
+    var page_html = $scope.page_html;
+    editor.getSession().setValue($scope.item_data.page_html);
+});
+
+
+{% endif %}
+
+
+
+}) ///
+                    
+</script>
+
+</head>
+<body>
+<header> </header>
+  <div class="user_gate">
+    <a href="{{ login_key }}">{{ gate }}</a>
+    {% if user_name != 'No User' %}<br /><a href="../../account">{{ user_name }}</a>{% endif %}
+  </div><!-- - . user_gate - -->
+  
+  <div class="logo_wrap">
+    <a href="/"><img src="../../pics/8zaezz.png" /></a>
+      <span><br />Ketchum<span style="color:#C2FFDF;">.today</span></span>
+  </div><!-- . logo_wrap - -->
+  
+  <aside class="left_aside">
+    
+    <nav class="main_nav left_aside-[!left_aside!]"><ul>
+        
+      <a href="/"><li id="tempetureNav">Tempeture</li></a>
+      <a href="../../pages"><li id="pagesNav">Local Pages</li></a>
+      <a href="../../maps"><li id="mapsNav">Maps</li></a>
+      {% if path_layer == 'publish' %}<br />
+      <a href="../../publish"><li id="publishNav">Publish</li></a>
+      {% endif %}
+      {% if nav_select == 'register' %}<br />
+      <a href="../../register"><li id="registerNav">Register</li></a>
+      {% endif %}
+      {% if nav_select == 'account' %}<br />
+      <a href="../../account"><li id="accountNav">Account</li></a>
+      {% endif %}
+
+    </ul></nav><!-- - . main_nav - -->
+  </aside><!-- . left_aside - -->
+
+  <div class="left_aside_button_wrap">
+    <div class="aside_button_data">
+      <div ng-click="left_aside_open()">nav open</div>
+      <div ng-click="left_aside_close()">nav close</div>
+    </div><!-- . asadie_button_data - -->
+  </div><!-- . left_aside_button_wrap - -->
+
+  <main>
+    <div class="page_html_wrap">
+      {% if timestamp == 'true' %}
+        <div class="timestamp_top" ng-show="modal=='on'"><span style="color:#2aa198;font-size:20px;">{{ day }}</span> &nbsp; - &nbsp; {{ time }}</div>
+      {% endif %}
+
+      {{ page_html|safe }}
+      
+    </div><!-- - . page_html_wrap - -->
+  </main>
+
+  <aside class="right_aside right_aside-[!right_aside!]">
+    {{ page_ads|safe }}
+  </aside><!-- . right_aside - -->
+
+  <div class="right_aside_button_wrap">
+    <div class="aside_button_data">
+      <div ng-click="right_aside_open()">open right</div>
+      <div ng-click="right_aside_close()">close right</div>
+    </div><!-- . asadie_button_data - -->
+  </div><!-- . right_aside_button_wrap - -->
+
+  
+</body>
+</html>
