@@ -28,19 +28,19 @@ header { position: fixed; z-index: 900; top: 0; left: 0; right: 0; border-bottom
 .user_gate a:hover { text-decoration: underline; }
 
 
-.left_aside { position: fixed; z-index: 850; top: 0; left: 0; right: 0; border-bottom: 1px solid #aaa; background-color: #5A5475; height: 75px; transition: 2s; }
-
+.left_aside { position: fixed; z-index: 850; top: 0; left: 0; right: 0; border-bottom: 1px solid #aaa; height: 75px; transition: 2s; }
+.left_aside_bg { background-color: #E8EAF6; position: fixed; z-index: 851; height: 125px; left: 0; bottom: 0; width: 200px; border-top: 3px dashed #5A5475; }
 
 .left_aside-yes { display: block; opacity: 1; transition: 2s; }
 .left_aside-no { display: none; opacity: 0; transition: 2s; }
-.left_aside_button_wrap { font-size: 14px; position: fixed; top: 10px; right: 5px; z-index: 1000; width: 100px; }
+.left_aside_button_wrap { font-size: 14px; position: fixed; top: 10px; right: 5px; z-index: 1000; }
 
 .right_aside-yes { display: none; opacity: 1; transition: 2s; }
 .right_aside-no { display: none; opacity: 0; transition: 2s; }
 .right_aside_button_wrap { display: none; position: fixed; bottom: 5px; right: 25px; z-index: 1000; }
 
 .aside_button_data { letter-spacing: 0.08em; }
-.aside_button_data div { cursor: pointer; padding: 5px; font-size: 12px; color: #aaa; border: 1px solid #fff; width: 75px; text-align: center;; }
+.aside_button_data div { cursor: pointer; padding: 5px; font-size: 12px; color: #aaa; border: 1px solid #fff; width: 75px; text-align: center; display: inline-block; }
 .aside_button_data div:hover { border: 1px solid #eee; color: #555; }
 
 .logo_wrap { color: #96CBFE; outline: 0px solid #657b83; position: fixed; z-index: 1000; top: 5px; left: 5px; width: 125px; text-align: center; line-height: 18px; letter-spacing: .09em; font-size: 14px; transition: 2s; padding: 5px 0; }
@@ -53,10 +53,12 @@ header { position: fixed; z-index: 900; top: 0; left: 0; right: 0; border-bottom
 
 .main_nav { position: fixed; left: 0; right: 0; top: 75px; text-align: right; font-size: 14px; z-index: 1000; transition: 2s; }
 .main_nav ul, .edit_wrap ul { padding: 0; margin: 0; }
-.main_nav li, .edit_wrap li { list-style: none; padding-right: 10px; border-right: 4px solid #5A5475;  transition: 2s; padding: 15px; border-bottom: 1px solid #eee; }
+.main_nav li, .edit_wrap li { list-style: none; padding-right: 10px; border-right: 4px solid #fff;  transition: 2s; padding: 15px; border-bottom: 1px solid #eee; }
 .main_nav li:hover, .edit_wrap li:hover { border-right: 4px solid #96CBFE; color: #002b36; }
 
 .main_nav a, .edit_wrap a { text-decoration: none; color: #96CBFE; }
+
+.main_nav li#{{ nav_select }}Nav, .edit_wrap li#{{ nav_select }}Nav { border-right: 4px solid #5A5475; color: #5A5475; }
 
 
 .edit_wrap { position: fixed; left: 100px; top: 205px; text-align: right; }
@@ -106,15 +108,14 @@ header { position: fixed; z-index: 900; top: 0; left: 0; right: 0; border-bottom
 
 .register_button:hover { text-decoration: none; border: 1px solid #657b83; color: #444; }
 
-.main_nav li#{{ nav_select }}Nav, .edit_wrap li#{{ nav_select }}Nav { border-right: 3px solid #96CBFE; color: #C2FFDF; }
 
 @media (min-width: 550px) {
 body { }
 header { display: none; }
 .logo_wrap { left: 0; }
 .user_gate { right: 10px; }
-.left_aside { top: 5px; left: 0; bottom: 5px; border-right: 1px solid #aaa; height: auto; border-bottom: 0; width: 125px; }
-.left_aside_button_wrap { bottom: 5px; left: 25px; top: auto; }
+.left_aside { top: 2px; left: 0; bottom: 3px; border-right: 1px solid #aaa; height: auto; border-bottom: 0; width: 125px; }
+.left_aside_button_wrap { bottom: 12px; left: 10px; top: auto; }
 .main_nav { width: 115px; top: 115px; }
 .main_nav li, .edit_wrap li { padding: 0; margin-bottom: 15px; border-bottom: 0; padding-right: 10px; }
 .page_html_wrap { margin-left: 130px; margin-right: 130px; margin-top: 25px; }
@@ -249,7 +250,7 @@ $http({ method: 'GET', url: '/list_data?page_code?' + $scope.account_id })
       <span><br />Ketchum<span style="color:#C2FFDF;">.today</span></span>
   </div><!-- . logo_wrap - -->
   
-  <aside class="left_aside">
+  <aside class="left_aside"><div class="left_aside_bg"></div>
     
     <nav class="main_nav left_aside-[!left_aside!]"><ul>
         
@@ -271,8 +272,8 @@ $http({ method: 'GET', url: '/list_data?page_code?' + $scope.account_id })
 
   <div class="left_aside_button_wrap">
     <div class="aside_button_data">
-      <div ng-click="left_aside_open()">nav open</div>
-      <div ng-click="left_aside_close()">nav close</div>
+      <div ng-click="left_aside_open()">open nav</div>
+      <div ng-click="left_aside_close()">close nav</div>
     </div><!-- . asadie_button_data - -->
   </div><!-- . left_aside_button_wrap - -->
 
